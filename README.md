@@ -9,6 +9,6 @@ This repo contains configuration specific to my environment, but with a little t
 - fedora/serve-mirror
   - Serve a local mirror via http (since it's not possible to mount a volume during image build).
 - fedora/use-mirror
-  - Create a new base image tagged 'fedora:22' with yum repo configuration pointing to the local mirror.  It will be used be used for builds that don't explicitly specify 'FROM docker.io/fedora:22'.
+  - Create a new base image tagged 'fedora:22' with yum repo configuration pointing to the local mirror.  It will be used for builds that don't explicitly specify 'FROM docker.io/fedora:22'.
 - centos/use-mirror
   - Create a new base image tagged 'centos:latest' with yum configuration pointing to a mirror that is fast for me.  CentOS package download is reliable enough for me that I don't see the point of creating a local mirror.
