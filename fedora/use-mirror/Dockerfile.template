@@ -1,0 +1,12 @@
+FROM fedora:__FEDORA_VERSION__
+MAINTAINER marun@redhat.com
+
+RUN echo 'deltarpm=0' >> /etc/dnf/dnf.conf
+RUN sed -i -e 's+^metalink=+#metalink=+' /etc/yum.repos.d/fedora.repo
+RUN sed -i -e 's+^#*baseurl=.*+baseurl=__SERVER_URL__/fedora23/fedora+' \
+  /etc/yum.repos.d/fedora.repo
+RUN sed -i -e 's+^metalink=+#metalink=+' /etc/yum.repos.d/fedora-updates.repo
+RUN sed -i -e 's+^#*baseurl=.*+baseurl=__SERVER_URL__/fedora23/updates+' \
+  /etc/yum.repos.d/fedora-updates.repo
+
+RUN dnf clean all; dnf -y update; dnf clean all
