@@ -1,3 +1,4 @@
+fedora/dev/*\.retry
 fedora/mirror-repos/Dockerfile\.2*
 fedora/sshd/*\.pub
 fedora/use-mirror/Dockerfile\.2*
