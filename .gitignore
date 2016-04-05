@@ -1,1 +1,2 @@
 fedora/mirror-repos/Dockerfile\.2*
+fedora/sshd/*\.pub
