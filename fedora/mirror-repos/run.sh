@@ -10,7 +10,7 @@ DOCKERFILE_TEMPLATE="${ROOT_PATH}/Dockerfile.template"
 DOCKERFILE="${ROOT_PATH}/Dockerfile.${FEDORA_VERSION}"
 
 cp "${DOCKERFILE_TEMPLATE}" "${DOCKERFILE}"
-sed -e "s+__FEDORA_VERSION__+${FEDORA_VERSION}+" "${DOCKERFILE}"
+sed -i -e "s+__FEDORA_VERSION__+${FEDORA_VERSION}+" "${DOCKERFILE}"
 
 BASE_PATH=/Users/Shared/yum
 if [ ! -d "${MIRROR_PATH}" ]; then

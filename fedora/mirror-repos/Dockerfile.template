@@ -1,4 +1,4 @@
-FROM fedora:23
+FROM fedora:__FEDORA_VERSION__
 MAINTAINER marun@redhat.com
 
 RUN echo 'deltarpm=0' >> /etc/dnf/dnf.conf
