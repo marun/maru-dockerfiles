@@ -1,4 +1,4 @@
-FROM docker.io/fedora:22
+FROM fedora:23
 MAINTAINER http://fedoraproject.org/wiki/Cloud
 
 RUN dnf -y update && dnf -y install httpd && dnf clean all
