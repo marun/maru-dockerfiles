@@ -12,8 +12,10 @@ RUN dnf -y update && dnf -y install\
  ack\
  aspell-en\
  aspell\
+ bind-utils\
  emacs-nox\
  findutils\
+ fpaste\
  gcc-c++\
  gcc\
  git\
@@ -22,9 +24,11 @@ RUN dnf -y update && dnf -y install\
  libxml2-devel\
  libxslt-devel\
  links\
+ make\
  mercurial\
  procps\
  python-devel\
+ screen\
  vim-enhanced\
  && dnf clean all
 
