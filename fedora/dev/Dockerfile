@@ -29,6 +29,7 @@ RUN dnf -y update && dnf -y install\
  procps\
  python-devel\
  screen\
+ sysstat\
  vim-enhanced\
  && dnf clean all
 
