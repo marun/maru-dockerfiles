@@ -2,8 +2,8 @@
 
 set -e
 
-FEDORA_VERSION=${1:-23}
-SERVER_URL=${2:-http://10.14.6.90:7080}
+FEDORA_VERSION=${1:-24}
+SERVER_URL=${2:-http://obsidian.thesprawl.net:7080}
 TAG=${3:-"fedora:latest"}
 
 ROOT_PATH=$(dirname "${BASH_SOURCE}")
