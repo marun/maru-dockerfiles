@@ -1,4 +1,4 @@
-FROM fedora:latest
+FROM fedora:24
 MAINTAINER marun@redhat.com
 
 ENV DEV_USER dev
