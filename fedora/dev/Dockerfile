@@ -1,18 +1,16 @@
-# Base image for development environment.  ansible is used to perform
-# host-local configuration.
+# Base image for development environment.
 
 FROM marun/sshd
 MAINTAINER marun@redhat.com
 
 # Install packages
 RUN dnf -y update && dnf -y install\
- # ansible
- python python-dnf libselinux-python yum-utils\
- # dev
  ack\
  aspell-en\
  aspell\
+ bash-completion\
  bind-utils\
+ docker\
  emacs-nox\
  findutils\
  fpaste\
@@ -29,17 +27,48 @@ RUN dnf -y update && dnf -y install\
  procps\
  python-devel\
  screen\
+ stow\
  sysstat\
  vim-enhanced\
  && dnf clean all
 
-# Install upstream docker until 1.10 is available in fedora
-ADD docker.repo /etc/yum.repos.d/docker.repo
-RUN dnf -y install docker-engine && dnf clean all
+# Configure ssh to accept git config
+RUN echo 'AcceptEnv GIT_AUTHOR_*' >> /etc/ssh/sshd_config
+RUN echo 'AcceptEnv GIT_COMMITTER_*' >> /etc/ssh/sshd_config
 
-# Configure ssh
-RUN echo 'AcceptEnv GIT_*' >> /etc/ssh/sshd_config
+# Need this path for the build but it is intended to be mounted as a volume
+RUN mkdir /opt/src
+RUN chown dev:dev /opt/src
 
-# Need to disable ssh daemon from starting or ansible provisioning
-# will try to use ssh instead of docker connection.
-ENTRYPOINT []
+# Ensure that the user belongs to the group owning the docker socket
+# on the host.
+# TODO - discover the gid of the docker group on the host
+RUN groupadd --gid 1001 docker-socket
+RUN usermod -a -G docker-socket dev
+
+USER $DEV_USER
+
+ENV SRC_DIR "/home/${DEV_USER}/src"
+
+RUN ln -sf /opt/src "${SRC_DIR}"
+
+# Configure dotfiles
+RUN git clone https://github.com/marun/dotfiles.git "${SRC_DIR}/dotfiles"
+RUN stow --dir="${SRC_DIR}/dotfiles" --target="${HOME}" git
+RUN stow --dir="${SRC_DIR}/dotfiles" --target="${HOME}" screen
+RUN stow --dir="${SRC_DIR}/dotfiles" --target="${HOME}" vim
+RUN stow --dir="${SRC_DIR}/dotfiles" --target="${HOME}" bash
+RUN echo "if [ -f ~/.bash_custom ]; then . ~/.bash_custom; fi" >> ~/.bashrc
+
+# Configure binfiles
+RUN git clone https://github.com/marun/binfiles.git "${SRC_DIR}/binfiles"
+RUN ln -sf "${SRC_DIR}/binfiles" "${HOME}/bin"
+
+# Configure emacs.  Install needs to run post-build to allow the install to
+# update the mounted path.
+RUN ln -sf "${SRC_DIR}/dot-emacs" "${HOME}/.emacs.d"
+
+USER root
+
+# Clear source path (intended to be mounted as a volume)
+RUN rm -rf /opt/src/*

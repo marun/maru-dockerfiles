@@ -6,4 +6,4 @@ docker run -d -p 7022:22 -v /opt/src:/opt/src -v /opt/data:/opt/data\
  -v /tmp/openshift-dind-cluster:/tmp/openshift-dind-cluster\
  -v /tmp/openshift:/tmp/openshift\
  --restart=always\
- marun/dev /usr/sbin/sshd -D
+ marun/dev
