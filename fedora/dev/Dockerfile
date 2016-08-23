@@ -17,7 +17,6 @@ RUN dnf -y update && dnf -y install\
  gcc-c++\
  gcc\
  git\
- go\
  htop\
  libxml2-devel\
  libxslt-devel\
@@ -31,6 +30,11 @@ RUN dnf -y update && dnf -y install\
  sysstat\
  vim-enhanced\
  && dnf clean all
+
+# Install upstream golang until 1.7 is available in f24.
+RUN curl -o /tmp/go1.7.linux-amd64.tar.gz\
+ https://storage.googleapis.com/golang/go1.7.linux-amd64.tar.gz;\
+ tar -C /usr/local -xzf /tmp/go1.7.linux-amd64.tar.gz
 
 # Configure ssh to accept git config
 RUN echo 'AcceptEnv GIT_AUTHOR_*' >> /etc/ssh/sshd_config
