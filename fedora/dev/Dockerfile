@@ -32,9 +32,10 @@ RUN dnf -y update && dnf -y install\
  && dnf clean all
 
 # Install upstream golang until 1.7 is available in f24.
-RUN curl -o /tmp/go1.7.linux-amd64.tar.gz\
- https://storage.googleapis.com/golang/go1.7.linux-amd64.tar.gz;\
- tar -C /usr/local -xzf /tmp/go1.7.linux-amd64.tar.gz
+ENV GO_ARCHIVE go1.7.3.linux-amd64.tar.gz
+RUN curl -o /tmp/${GO_ARCHIVE}\
+ https://storage.googleapis.com/golang/${GO_ARCHIVE};\
+ tar -C /usr/local -xzf /tmp/${GO_ARCHIVE}
 
 # Configure ssh to accept git config
 RUN echo 'AcceptEnv GIT_AUTHOR_*' >> /etc/ssh/sshd_config
