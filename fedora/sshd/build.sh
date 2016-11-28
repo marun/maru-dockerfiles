@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -o errexit
+set -o nounset
+set -o pipefail
+
 KEY_PATH=$(dirname "${BASH_SOURCE}")/id_rsa.pub
 
 if [ ! -f "${KEY_PATH}" ]; then
@@ -7,4 +11,4 @@ if [ ! -f "${KEY_PATH}" ]; then
   exit 1
 fi
 
-docker build -t "marun/sshd" .
+docker build -t "maru/sshd" .

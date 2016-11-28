@@ -1,6 +1,6 @@
 # Base image for development environment.
 
-FROM marun/sshd
+FROM maru/sshd
 MAINTAINER marun@redhat.com
 
 # Install packages

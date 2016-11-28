@@ -1,6 +1,10 @@
 #!/bin/bash
 
-TAG=marun/dev
+set -o errexit
+set -o nounset
+set -o pipefail
+
+TAG=maru/dev
 TMP_TAG="${TAG}-tmp"
 NAME="dev-build"
 
@@ -12,6 +16,6 @@ docker run -t --name "${NAME}" -v /opt/src:/opt/src -u dev\
  --entrypoint "${INSTALL}" "${TMP_TAG}"
 
 # Commit the new image
-docker commit -c 'USER root' -c 'ENTRYPOINT ["/usr/sbin/sshd", "-D"]' "${NAME}" "${TAG}"
+docker commit -c 'USER root' -c 'ENTRYPOINT ["/usr/sbin/init"]' "${NAME}" "${TAG}"
 docker rm "${NAME}"
 docker rmi "${TMP_TAG}"

@@ -1,4 +1,4 @@
-FROM fedora:24
+FROM maru/systemd
 MAINTAINER marun@redhat.com
 
 ENV DEV_USER dev
@@ -6,8 +6,6 @@ ENV DEV_HOME /home/$DEV_USER
 
 # Install sshd
 RUN dnf update; dnf -y install openssh-server sudo; dnf clean all
-RUN mkdir /var/run/sshd
-RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N ''
 
 # Add non-root user
 RUN /usr/sbin/groupadd $DEV_USER
@@ -27,4 +25,3 @@ RUN echo "${DEV_USER}        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
 RUN sed -i -e '/Defaults\s\+env_reset/a Defaults\tenv_keep += "SSH_AUTH_SOCK"' /etc/sudoers
 
 EXPOSE 22
-ENTRYPOINT ["/usr/sbin/sshd", "-D"]
