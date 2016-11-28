@@ -58,11 +58,7 @@ RUN ln -sf /opt/src "${SRC_DIR}"
 
 # Configure dotfiles
 RUN git clone https://github.com/marun/dotfiles.git "${SRC_DIR}/dotfiles"
-RUN stow --dir="${SRC_DIR}/dotfiles" --target="${HOME}" git
-RUN stow --dir="${SRC_DIR}/dotfiles" --target="${HOME}" screen
-RUN stow --dir="${SRC_DIR}/dotfiles" --target="${HOME}" vim
-RUN stow --dir="${SRC_DIR}/dotfiles" --target="${HOME}" bash
-RUN echo "if [ -f ~/.bash_custom ]; then . ~/.bash_custom; fi" >> ~/.bashrc
+RUN ${SRC_DIR}/dotfiles/apply.sh
 
 # Configure binfiles
 RUN git clone https://github.com/marun/binfiles.git "${SRC_DIR}/binfiles"
