@@ -41,6 +41,9 @@ RUN curl -o /tmp/${GO_ARCHIVE}\
 RUN echo 'AcceptEnv GIT_AUTHOR_*' >> /etc/ssh/sshd_config
 RUN echo 'AcceptEnv GIT_COMMITTER_*' >> /etc/ssh/sshd_config
 
+# Configure ssh to accept TZ
+RUN echo 'AcceptEnv TZ' >> /etc/ssh/sshd_config
+
 # Need this path for the build but it is intended to be mounted as a volume
 RUN mkdir /opt/src
 RUN chown dev:dev /opt/src
