@@ -38,6 +38,11 @@ RUN dnf -y update && dnf -y install\
  vim-enhanced\
  && dnf clean all
 
+# Install bazel
+RUN dnf copr enable -y vbatts/bazel\
+ && dnf -y update\
+ && dnf -y install bazel\
+ && dnf clean all
 
 # Configure ssh to accept git config
 RUN echo 'AcceptEnv GIT_AUTHOR_*' >> /etc/ssh/sshd_config
