@@ -9,7 +9,7 @@
 # http://developers.redhat.com/blog/2016/09/13/running-systemd-in-a-non-privileged-container/
 #
 
-FROM fedora:24
+FROM fedora:27
 MAINTAINER marun@redhat.com
 
 # Fix 'WARNING: terminal is not fully functional' when TERM=dumb
@@ -49,12 +49,5 @@ RUN systemctl mask\
  systemd-vconsole-setup.service
 RUN cp /usr/lib/systemd/system/dbus.service /etc/systemd/system/;\
  sed -i 's/OOMScoreAdjust=-900//' /etc/systemd/system/dbus.service
-
-# Remove non-english translations for glibc to reduce image size by 100mb.
-RUN dnf -y update && dnf -y install\
- glibc-langpack-en\
- && dnf -y remove\
- glibc-all-langpacks\
- && dnf clean all
 
 CMD ["/usr/sbin/init"]
