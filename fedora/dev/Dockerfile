@@ -79,6 +79,14 @@ RUN ln -sf "${SRC_DIR}/binfiles" "${HOME}/bin"
 # update the mounted path.
 RUN ln -sf "${SRC_DIR}/dot-emacs" "${HOME}/.emacs.d"
 
+# Install gimme
+RUN curl -sL -o ~/bin/gimme https://raw.githubusercontent.com/travis-ci/gimme/5256888df1e749fdb6acabc8f9e07a52f05b9f28/gimme
+RUN chmod +x ~/bin/gimme
+
+# Install delve
+RUN eval $(~/bin/gimme 1.9.2)\
+ && GOPATH="/home/${DEV_USER}/go" go get github.com/derekparker/delve/cmd/dlv
+
 USER root
 
 # Clear source path (intended to be mounted as a volume)
