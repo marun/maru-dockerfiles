@@ -1,7 +1,10 @@
 # Base image for development environment.
 
-FROM maru/sshd
+FROM maru/sshd:fedora27
 MAINTAINER marun@redhat.com
+
+# Remove nodocs option from dnf config
+RUN sed -i -e '/tsflags=/d' /etc/dnf/dnf.conf
 
 # Install packages
 RUN dnf -y update && dnf -y install\
@@ -10,6 +13,7 @@ RUN dnf -y update && dnf -y install\
  aspell\
  bash-completion\
  bind-utils\
+ dnf-plugins-core\
  docker\
  emacs-nox\
  findutils\
@@ -22,20 +26,18 @@ RUN dnf -y update && dnf -y install\
  libxslt-devel\
  links\
  make\
+ man\
+ man-pages\
  mercurial\
  procps\
  python-devel\
+ rsync\
  screen\
  stow\
  sysstat\
  vim-enhanced\
  && dnf clean all
 
-# Install upstream golang until 1.7 is available in f24.
-ENV GO_ARCHIVE go1.7.3.linux-amd64.tar.gz
-RUN curl -o /tmp/${GO_ARCHIVE}\
- https://storage.googleapis.com/golang/${GO_ARCHIVE};\
- tar -C /usr/local -xzf /tmp/${GO_ARCHIVE}
 
 # Configure ssh to accept git config
 RUN echo 'AcceptEnv GIT_AUTHOR_*' >> /etc/ssh/sshd_config
