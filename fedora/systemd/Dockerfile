@@ -9,7 +9,7 @@
 # http://developers.redhat.com/blog/2016/09/13/running-systemd-in-a-non-privileged-container/
 #
 
-FROM fedora:27
+FROM fedora:28
 MAINTAINER marun@redhat.com
 
 # Fix 'WARNING: terminal is not fully functional' when TERM=dumb

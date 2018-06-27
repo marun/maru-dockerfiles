@@ -11,4 +11,4 @@ if [ ! -f "${KEY_PATH}" ]; then
   exit 1
 fi
 
-docker build -t "maru/sshd:fedora27" .
+docker build -t "maru/sshd:fedora28" .
