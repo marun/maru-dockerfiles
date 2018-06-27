@@ -84,7 +84,7 @@ RUN curl -sL -o ~/bin/gimme https://raw.githubusercontent.com/travis-ci/gimme/52
 RUN chmod +x ~/bin/gimme
 
 # Install delve
-RUN eval $(~/bin/gimme 1.9.2)\
+RUN eval $(~/bin/gimme 1.10.3)\
  && GOPATH="/home/${DEV_USER}/go" go get github.com/derekparker/delve/cmd/dlv
 
 USER root
