@@ -13,4 +13,6 @@ docker run -d -p 7022:22 -v /opt/src:/opt/src -v /opt/data:/opt/data\
  -v /home/maru/.minikube:/home/maru/.minikube\
  --security-opt=seccomp:unconfined\
  --restart=always\
+ --tmpfs /tmp --tmpfs /run\
+ -v /sys/fs/cgroup:/sys/fs/cgroup:ro\
  maru/dev:fedora28
