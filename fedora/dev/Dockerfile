@@ -53,13 +53,13 @@ RUN echo 'AcceptEnv TZ' >> /etc/ssh/sshd_config
 
 # Need this path for the build but it is intended to be mounted as a volume
 RUN mkdir /opt/src
-RUN chown dev:dev /opt/src
+RUN chown ${DEV_USER}:${DEV_USER} /opt/src
 
 # Ensure that the user belongs to the group owning the docker socket
 # on the host.
 # TODO - discover the gid of the docker group on the host
 RUN groupadd --gid 1001 docker-socket
-RUN usermod -a -G docker-socket dev
+RUN usermod -a -G docker-socket ${DEV_USER}
 
 USER $DEV_USER
 
