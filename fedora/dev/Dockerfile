@@ -71,7 +71,7 @@ RUN ln -sf "${SRC_DIR}/binfiles" "${HOME}/bin"
 
 # Configure emacs.  Install needs to run post-build to allow the install to
 # update the mounted path.
-RUN ln -sf "${SRC_DIR}/dot-emacs" "${HOME}/.emacs.d"
+RUN ln -sf "${SRC_DIR}/dotemacs" "${HOME}/.emacs.d"
 
 # Install gimme
 RUN curl -sL -o ~/bin/gimme https://raw.githubusercontent.com/travis-ci/gimme/5256888df1e749fdb6acabc8f9e07a52f05b9f28/gimme
