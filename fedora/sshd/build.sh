@@ -4,7 +4,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-KEY_PATH=$(dirname "${BASH_SOURCE}")/id_rsa.pub
+KEY_PATH=$(dirname "${BASH_SOURCE}")/authorized_keys
 
 if [ ! -f "${KEY_PATH}" ]; then
   >&2 echo "Missing ${KEY_PATH}"

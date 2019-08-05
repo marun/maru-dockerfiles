@@ -14,7 +14,7 @@ RUN echo "${DEV_USER}:${DEV_USER}" | chpasswd
 
 # Install authorized keys
 RUN mkdir $DEV_HOME/.ssh
-ADD id_rsa.pub $DEV_HOME/.ssh/authorized_keys
+ADD authorized_keys $DEV_HOME/.ssh/authorized_keys
 RUN chown -R $DEV_USER:$DEV_USER $DEV_HOME/.ssh
 RUN chmod 600 $DEV_HOME/.ssh/authorized_keys
 RUN chmod 700 $DEV_HOME/.ssh
