@@ -5,7 +5,7 @@ ENV DEV_USER dev
 ENV DEV_HOME /home/$DEV_USER
 
 # Install sshd
-RUN dnf update; dnf -y install openssh-server sudo; dnf clean all
+RUN dnf -y update; dnf -y install openssh-server sudo; dnf clean all
 
 # Add non-root user
 RUN /usr/sbin/groupadd $DEV_USER
