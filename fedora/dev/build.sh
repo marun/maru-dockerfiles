@@ -4,7 +4,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-TAG="maru/dev:fedora28"
+TAG="maru/dev:fedora30"
 TMP_TAG="${TAG}-tmp"
 NAME="dev-build"
 

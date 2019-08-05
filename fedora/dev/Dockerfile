@@ -1,6 +1,6 @@
 # Base image for development environment.
 
-FROM maru/sshd:fedora28
+FROM maru/sshd:fedora30
 MAINTAINER marun@redhat.com
 
 # Remove nodocs option from dnf config

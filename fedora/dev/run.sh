@@ -15,4 +15,4 @@ docker run -d -p 7022:22 -v /opt/src:/opt/src -v /opt/data:/opt/data\
  --restart=always\
  --tmpfs /tmp --tmpfs /run\
  -v /sys/fs/cgroup:/sys/fs/cgroup:ro\
- maru/dev:fedora28
+ maru/dev:fedora30
