@@ -6,6 +6,9 @@ MAINTAINER marun@redhat.com
 # Remove nodocs option from dnf config
 RUN sed -i -e '/tsflags=/d' /etc/dnf/dnf.conf
 
+# Install telepresence repo
+RUN curl -s https://packagecloud.io/install/repositories/datawireio/telepresence/script.rpm.sh | sudo bash
+
 # Install packages
 RUN dnf -y update && dnf -y install\
  ack\
@@ -18,6 +21,7 @@ RUN dnf -y update && dnf -y install\
  emacs-nox\
  findutils\
  fpaste\
+ fuse\
  gcc-c++\
  gcc\
  git\
@@ -35,6 +39,7 @@ RUN dnf -y update && dnf -y install\
  screen\
  stow\
  sysstat\
+ telepresence\
  vim-enhanced\
  && dnf clean all
 
