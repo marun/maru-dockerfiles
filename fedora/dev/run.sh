@@ -10,6 +10,8 @@ docker run -d -p 7022:22 -v /opt/src:/opt/src -v /opt/data:/opt/data\
  -v /home/maru/.kube:/home/dev/.kube\
  -v /home/maru/.docker:/home/dev/.docker\
  -v /home/maru/.minikube:/home/maru/.minikube\
+ --cap-add=NET_ADMIN --cap-add=NET_BIND_SERVICE\
+ --privileged\
  --security-opt=seccomp:unconfined\
  --restart=always\
  --tmpfs /tmp --tmpfs /run\
