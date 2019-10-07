@@ -15,6 +15,7 @@ RUN dnf -y update && dnf -y install\
  aspell-en\
  aspell\
  bash-completion\
+ bc\
  bind-utils\
  dnf-plugins-core\
  docker\
