@@ -1,4 +1,4 @@
-FROM maru/systemd:fedora30
+FROM maru/systemd:fedora31
 MAINTAINER marun@redhat.com
 
 ENV DEV_USER dev

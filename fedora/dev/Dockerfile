@@ -1,13 +1,10 @@
 # Base image for development environment.
 
-FROM maru/sshd:fedora30
+FROM maru/sshd:fedora31
 MAINTAINER marun@redhat.com
 
 # Remove nodocs option from dnf config
 RUN sed -i -e '/tsflags=/d' /etc/dnf/dnf.conf
-
-# Install telepresence repo
-RUN curl -s https://packagecloud.io/install/repositories/datawireio/telepresence/script.rpm.sh | sudo bash
 
 # Install packages
 RUN dnf -y update && dnf -y install\
@@ -17,16 +14,19 @@ RUN dnf -y update && dnf -y install\
  bash-completion\
  bc\
  bind-utils\
+ conntrack\
  dnf-plugins-core\
  docker\
- emacs-nox\
  findutils\
  fpaste\
  fuse\
  gcc-c++\
  gcc\
  git\
+ gnutls-devel\
  htop\
+ iptables\
+ jq\
  libxml2-devel\
  libxslt-devel\
  links\
@@ -34,13 +34,15 @@ RUN dnf -y update && dnf -y install\
  man\
  man-pages\
  mercurial\
+ ncurses-devel\
  procps\
  python-devel\
+ python-pip\
  rsync\
  screen\
+ sshfs\
  stow\
  sysstat\
- telepresence\
  vim-enhanced\
  && dnf clean all
 

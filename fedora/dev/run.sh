@@ -16,4 +16,6 @@ docker run -d -p 7022:22 -v /opt/src:/opt/src -v /opt/data:/opt/data\
  --restart=always\
  --tmpfs /tmp --tmpfs /run\
  -v /sys/fs/cgroup:/sys/fs/cgroup:ro\
- maru/dev:fedora30
+ maru/dev:fedora31
+# FIXME As of Fedora 31 the system doesn't progress to the desired runlevel
+docker exec -t dev rm /var/run/nologin
