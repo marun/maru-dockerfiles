@@ -11,6 +11,7 @@ RUN dnf -y update && dnf -y install\
  ack\
  aspell-en\
  aspell\
+ autoconf\
  bash-completion\
  bc\
  bind-utils\
@@ -43,6 +44,7 @@ RUN dnf -y update && dnf -y install\
  sshfs\
  stow\
  sysstat\
+ texinfo\
  vim-enhanced\
  && dnf clean all
 
